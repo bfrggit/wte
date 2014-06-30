@@ -142,6 +142,7 @@ if($num == 0){
 					placeholder="Example: charlesz"
 					required
 					tabindex="1"
+					maxlength="12"
 				/>
 				<p><label for="name_first">First name</label></p>
 				<input
@@ -151,6 +152,7 @@ if($num == 0){
 					placeholder="Example: Charles"
 					required
 					tabindex="2"
+					maxlength="48"
 				/>
 				<p><label for="name_last">Last name</label></p>
 				<input
@@ -160,6 +162,7 @@ if($num == 0){
 					placeholder="Example: Zhu"
 					required
 					tabindex="3"
+					maxlength="48"
 				/>
 
 				<input
@@ -178,20 +181,21 @@ if($num == 0){
 			<p>Please identify the user to delete by ID.</p>
 			
 			<form id="deleteform" action="methods/delete_user.php" method="POST">
-				<p><label for="id_">User ID</label></p>
+				<p><label for="id_">User</label></p>
 <?php
 $num = mysql_num_rows($res);
 $i = 0;
 while($i < $num):
-	$radio_value = mysql_result($res, $i, "id");
+	$radio_id = mysql_result($res, $i, "id");
+	$radio_name = mysql_result($res, $i, "name_first")." ".mysql_result($res, $i, "name_last");
 	echo "<input
 			type=\"radio\"
 			id=\"id_\"
 			name=\"id_\"
-			value=\"{$radio_value}\"
+			value=\"{$radio_id}\"
 			required
 			style=\"margin: 0px 10px 0px 25px\"
-		/>{$radio_value}";
+		/>{$radio_name} ({$radio_id})";
 	++$i;
 endwhile;
 ?>
