@@ -46,7 +46,7 @@
 <body>
 	<header>
 		<div id="headercontainer">
-			<h1><a>Where to Eat?</a></h1>
+<?php include $_SERVER['DOCUMENT_ROOT']."/lib/header_button.htm"; ?>
 		</div>
 	</header>
 

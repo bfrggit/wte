@@ -46,12 +46,12 @@
 <body>
 	<header>
 		<div id="headercontainer">
-<?php include $_SERVER['DOCUMENT_ROOT']."/lib/header_button.htm"; ?>
+<?php include $_SERVER['DOCUMENT_ROOT']."/lib/header_button.htm"; ?> <!--
 			<nav><ul>
 				<li><a class="table anchorLink" href="#table">List</a></li>
 				<li><a class="new anchorLink" href="#new">New</a></li>
 				<li><a class="delete anchorLink" href="#delete">Delete</a></li>
-			</ul></nav>
+			</ul></nav> -->
 		</div>
 	</header>
 
@@ -128,7 +128,7 @@ if($num == 0){
 }
 ?>
 			<div class="break" />
-		</section>
+		</section> <!--
 
 		<section id="new">
 			<h2 class="intro">New User</h2>
@@ -176,7 +176,7 @@ if($num == 0){
 				/> 
 			</form>
 			<div class="break" />
-		</section>
+		</section> --> <!--
 
 		<section id="delete">
 			<h2 class="intro">Delete User</h2>
@@ -184,7 +184,7 @@ if($num == 0){
 			
 			<form id="deleteform" action="methods/delete_user.php" method="POST">
 				<p><label for="id_">User</label></p>
-<?php
+<?php /*
 $num = mysql_num_rows($res);
 $i = 0;
 while($i < $num):
@@ -199,7 +199,7 @@ while($i < $num):
 			style=\"margin: 0px 10px 0px 25px\"
 		/>{$radio_name} ({$radio_id})";
 	++$i;
-endwhile;
+endwhile; */
 ?>
 				<p></p>
 				<input
@@ -209,11 +209,11 @@ endwhile;
 					tabindex="10"
 					value="Submit"
 					style="margin-top: 15px"
-<?php if($num == 0) echo "disabled"; ?>
+<?php //if($num == 0) echo "disabled"; ?>
 				/> 
 			</form>
 			<div class="break" />
-		</section>
+		</section> -->
 	</section>
 </body>
 

@@ -2,7 +2,7 @@
 <html>
 
 <head>
-	<title>PEPO: Where to Eat? Users</title>
+	<title>PEPO: Where to Eat? Locations</title>
 	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 
 	<link rel="shortcut icon" href="/icon.png" />
@@ -46,12 +46,12 @@
 <body>
 	<header>
 		<div id="headercontainer">
-<?php include $_SERVER['DOCUMENT_ROOT']."/lib/header_button.htm"; ?>
+<?php include $_SERVER['DOCUMENT_ROOT']."/lib/header_button.htm"; ?> <!--
 			<nav><ul>
 				<li><a class="table anchorLink" href="#table">List</a></li>
 				<li><a class="new anchorLink" href="#new">New</a></li>
 				<li><a class="delete anchorLink" href="#delete">Delete</a></li>
-			</ul></nav>
+			</ul></nav> -->
 		</div>
 	</header>
 
@@ -77,11 +77,11 @@ if(!mysql_select_db($db_name)){
 }
 
 // Load table
-$res = mysql_query("SELECT * FROM {$tb_u}");
+$res = mysql_query("SELECT * FROM {$tb_l}");
 if(!$res){
 	die("<section id=\"error\">
 			<h2 class=\"contact\">Database Error</h2>
-			<p>Cannot read from table: ${tb_u}</p>
+			<p>Cannot read from table: ${tb_l}</p>
 		</section>"
 	);
 }
@@ -93,16 +93,17 @@ if(!$res){
 				style="background:
 					url(/style/images/about.png)
 					no-repeat -10px -10px;"
-			>Users
+			>Locations
 			</h2>
-			<p>All users available on the site are listed below.</p>
+			<p>All locations available on the site are listed below.</p>
 			<!-- Show table -->
 			<table id="ver-minimalist">
 				<thead>
 					<tr>
 						<th scope="col" id="id">ID</th>
-						<th scope="col" id="name_first">First name</th>
-						<th scope="col" id="name_last">Last name</th>
+						<th scope="col" id="name_full">Name</th>
+						<th scope="col" id="latitude">Latitude</th>
+						<th scope="col" id="longitude">Longitude</th>
 					</tr>
 				</thead>
 
@@ -113,8 +114,9 @@ $i = 0;
 while($i < $num):
 	echo "<tr>";
 	echo "<td>".mysql_result($res, $i, "id")."</td>";
-	echo "<td>".mysql_result($res, $i, "name_first")."</td>";
-	echo "<td>".mysql_result($res, $i, "name_last")."</td>";
+	echo "<td>".mysql_result($res, $i, "name_full")."</td>";
+	echo "<td>".mysql_result($res, $i, "latitude")."</td>";
+	echo "<td>".mysql_result($res, $i, "longitude")."</td>";
 	echo "</tr>";
 	++$i;
 endwhile;
@@ -128,42 +130,56 @@ if($num == 0){
 }
 ?>
 			<div class="break" />
-		</section>
+		</section> <!--
 
 		<section id="new">
-			<h2 class="intro">New User</h2>
+			<h2 class="intro">New Location</h2>
 			<p>Please fill in the form below.</p>
 			
-			<form id="newform" action="methods/new_user.php" method="POST">
-				<p><label for="id_">User ID must be unique</label></p>
+			<form id="newform" action="methods/new_location.php" method="POST">
+				<p><label for="id_">Location ID must be unique</label></p>
 				<input
 					type="text"
 					id="id_"
 					name="id_"
-					placeholder="Example: charlesz"
+					placeholder="Example: rabbitb"
 					required
 					tabindex="1"
 					maxlength="12"
 				/>
-				<p><label for="name_first">First name</label></p>
+				<p><label for="name_full">Name</label></p>
 				<input
 					type="text"
-					id="name_first"
-					name="name_first"
-					placeholder="Example: Charles"
+					id="name_full"
+					name="name_full"
+					placeholder="Example: Rabbit Burrow"
 					required
 					tabindex="2"
 					maxlength="48"
 				/>
-				<p><label for="name_last">Last name</label></p>
+				<p><label for="latitude">Latitude</label></p>
 				<input
-					type="text"
-					id="name_last"
-					name="name_last"
-					placeholder="Example: Zhu"
+					type="number"
+					id="latitude"
+					name="latitude"
+					placeholder="Example: 33.6424107"
 					required
 					tabindex="3"
-					maxlength="48"
+					step="0.0000001"
+					min="-90"
+					max="90"
+				/>
+				<p><label for="longitude">Longitude</label></p>
+				<input
+					type="number"
+					id="longitude"
+					name="longitude"
+					placeholder="Example: -117.8305355"
+					required
+					tabindex="4"
+					step="0.0000001"
+					min="-180"
+					max="180"
 				/>
 
 				<input
@@ -176,20 +192,20 @@ if($num == 0){
 				/> 
 			</form>
 			<div class="break" />
-		</section>
+		</section> --> <!--
 
 		<section id="delete">
-			<h2 class="intro">Delete User</h2>
-			<p>Please identify the user to delete by ID.</p>
+			<h2 class="intro">Delete Location</h2>
+			<p>Please identify the location to delete by ID.</p>
 			
-			<form id="deleteform" action="methods/delete_user.php" method="POST">
-				<p><label for="id_">User</label></p>
-<?php
+			<form id="deleteform" action="methods/delete_location.php" method="POST">
+				<p><label for="id_">Location</label></p>
+<?php /*
 $num = mysql_num_rows($res);
 $i = 0;
 while($i < $num):
 	$radio_id = mysql_result($res, $i, "id");
-	$radio_name = mysql_result($res, $i, "name_first")." ".mysql_result($res, $i, "name_last");
+	$radio_name = mysql_result($res, $i, "name_full");
 	echo "<input
 			type=\"radio\"
 			id=\"id_\"
@@ -199,7 +215,7 @@ while($i < $num):
 			style=\"margin: 0px 10px 0px 25px\"
 		/>{$radio_name} ({$radio_id})";
 	++$i;
-endwhile;
+endwhile; */
 ?>
 				<p></p>
 				<input
@@ -209,11 +225,11 @@ endwhile;
 					tabindex="10"
 					value="Submit"
 					style="margin-top: 15px"
-<?php if($num == 0) echo "disabled"; ?>
+<?php //if($num == 0) echo "disabled"; ?>
 				/> 
 			</form>
 			<div class="break" />
-		</section>
+		</section> -->
 	</section>
 </body>
 
