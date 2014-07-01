@@ -48,8 +48,8 @@ DROP TABLE IF EXISTS `locations`;
 CREATE TABLE `locations` (
   `id` varchar(16) NOT NULL,
   `name_full` varchar(64) NOT NULL,
-  `longitude` float NOT NULL,
-  `latitude` float NOT NULL,
+  `longitude` double NOT NULL,
+  `latitude` double NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -73,9 +73,9 @@ DROP TABLE IF EXISTS `options`;
 CREATE TABLE `options` (
   `id` varchar(16) NOT NULL,
   `name_full` varchar(64) NOT NULL,
-  `longitude` float NOT NULL,
-  `latitude` float NOT NULL,
-  `cost` int(11) NOT NULL,
+  `longitude` double NOT NULL,
+  `latitude` double NOT NULL,
+  `cost` smallint(6) NOT NULL,
   `category` varchar(16) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `category` (`category`),
@@ -102,7 +102,7 @@ DROP TABLE IF EXISTS `orders`;
 CREATE TABLE `orders` (
   `user` varchar(16) NOT NULL,
   `location` varchar(16) NOT NULL,
-  `cost_max` int(11) DEFAULT NULL,
+  `cost_max` smallint(6) DEFAULT NULL,
   `distance_max` float DEFAULT NULL,
   `category` varchar(16) DEFAULT NULL,
   `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -158,4 +158,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-06-29 22:54:47
+-- Dump completed on 2014-06-30 23:30:55

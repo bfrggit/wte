@@ -1,1 +1,1 @@
-<?php header('Location: under_construction.htm'); ?>
+<?php header('Location: dashboard.php'); ?>

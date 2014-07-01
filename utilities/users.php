@@ -127,6 +127,7 @@ if($num == 0){
 	echo "<p>No record.</p>";
 }
 ?>
+			<div class="break" />
 		</section>
 
 		<section id="new">
@@ -174,6 +175,7 @@ if($num == 0){
 					style="margin-left: 25px"
 				/> 
 			</form>
+			<div class="break" />
 		</section>
 
 		<section id="delete">
@@ -210,6 +212,7 @@ endwhile;
 <?php if($num == 0) echo "disabled"; ?>
 				/> 
 			</form>
+			<div class="break" />
 		</section>
 	</section>
 </body>

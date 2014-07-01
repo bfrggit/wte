@@ -269,6 +269,10 @@ input[type="text"] {
 	width: 400px;
 }
 
+input[type="number"] {
+	width: 300px;
+}
+
 textarea {
 	width: 750px;
 	height: 275px;
@@ -369,3 +373,5 @@ footer ul li img {
 	position: relative;
 	top: 2px;
 }
+
+div.break { width: 900px; }
