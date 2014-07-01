@@ -207,6 +207,7 @@ endwhile;
 					tabindex="10"
 					value="Submit"
 					style="margin-top: 15px"
+<?php if($num == 0) echo "disabled"; ?>
 				/> 
 			</form>
 		</section>
